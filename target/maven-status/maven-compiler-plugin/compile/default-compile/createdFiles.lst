@@ -1,0 +1,7 @@
+ru\gb\config\WebConfig.class
+ru\gb\controller\ProductController.class
+ru\gb\service\ProductService.class
+ru\gb\config\HelloConfiguration.class
+ru\gb\entiry\Product$ProductBuilder.class
+ru\gb\entiry\Product.class
+ru\gb\repository\ProductRepository.class
