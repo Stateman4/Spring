@@ -25,7 +25,7 @@ public class ProductController {
 
 
    @GetMapping()
-   public List<Product> getProductList(){
+   public List<ProductDto> getProductList(){
       return productService.findAll();
    }
 
@@ -42,11 +42,11 @@ public class ProductController {
    }
 
    @GetMapping("/{productId}")
-   public ResponseEntity<? extends Product> getProduct(@PathVariable("productId") Long id){
+   public ResponseEntity<? extends ProductDto> getProduct(@PathVariable("productId") Long id){
       if(id != null){
-        Product product = productService.findById(id);
-        if(product != null){
-           return new ResponseEntity<>(product, HttpStatus.OK);
+        ProductDto productDto = productService.findById(id);
+        if(productDto != null){
+           return new ResponseEntity<>(productDto, HttpStatus.OK);
         }
       }
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);

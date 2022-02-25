@@ -20,12 +20,12 @@ public class ProductService {
     }
 ////
 //    //метод поиска по id
-    public Product findById(Long id){
+    public ProductDto findById(Long id){
         return productRepository.findById(id);
     }
 
     //метод поиска всех товаров
-    public List<Product> findAll(){
+    public List<ProductDto> findAll(){
         return productRepository.findAll();
     }
 

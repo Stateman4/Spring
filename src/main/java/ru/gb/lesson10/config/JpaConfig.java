@@ -2,6 +2,7 @@ package ru.gb.lesson10.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import ru.gb.lesson10.repository.OrderGateway;
 
 import javax.sql.DataSource;
 import java.sql.Driver;
@@ -24,6 +26,7 @@ import java.util.Properties;
 @PropertySource("classpath:jdbc.properties")
 @EnableJpaRepositories(basePackages = "ru.gb.lesson10.dao")
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareBean")
+@EnableFeignClients(basePackageClasses = {OrderGateway.class}) //подключаем Фейн клиент для связи с другим api
 public class JpaConfig {
     @Value("${driverClassName}")
     private String driverClassName;

@@ -1,5 +1,6 @@
 package ru.gb.lesson10.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import ru.gb.lesson10.entity.enums.Status;
 
@@ -24,6 +25,7 @@ public class ProductDto {
     private BigDecimal cost;
 
     @PastOrPresent //не может быть изготовлен раньше, чем создание
+    @JsonFormat(pattern = "dd.MM.yyyy") //формат отображения даты
     private LocalDate date;
 
     @NotNull
