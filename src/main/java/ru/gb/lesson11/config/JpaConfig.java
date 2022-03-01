@@ -69,22 +69,6 @@ public class JpaConfig {
         return hibernateProp;
     }
 
-//    @Bean
-//    public EntityManagerFactory entityManagerFactory(){
-//       LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-//       factoryBean.setPackagesToScan("ru.gb.lesson7.entity");
-//       factoryBean.setDataSource(dataSource());
-//       factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-//       factoryBean.setJpaProperties(hibernateProperties());
-//       factoryBean.afterPropertiesSet();
-//       return factoryBean.getNativeEntityManagerFactory();
-//    }
-
-//    @Bean
-//    public PlatformTransactionManager transactionManager() throws IOException {
-//        return new JpaTransactionManager(entityManagerFactory());
-//    }
-
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
         return new HibernateJpaVendorAdapter();

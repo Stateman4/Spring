@@ -46,7 +46,6 @@ public class ProductInCartRepository {
         productInCart.setIdProd(product.getId());
         productInCart.setTitle(product.getTitle());
         productInCart.setCost(product.getCost());
-        System.out.println("+++++ "+productInCart);
         return cartDao.save(productInCart);
     }
 

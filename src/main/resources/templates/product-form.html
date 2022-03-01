@@ -31,13 +31,13 @@
                        aria-describedby="inputGroup-sizing-default" th:field="*{cost}">
             </div>
         </div>
-<!--        <div class="col-md-8">-->
-<!--            <div class="input-group mb-3">-->
-<!--                <span class="input-group-text" id="manufactureDate">Дата изготовления</span>-->
-<!--                <input type="datetime-local" class="form-control" aria-label="Sizing example input"-->
-<!--                       aria-describedby="inputGroup-sizing-default" th:field="*{date}">-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="manufactureDate">Дата изготовления</span>
+                <input type="date" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default" th:field="*{date}">
+            </div>
+        </div>
         <div class="col-md-8">
             <select class="form-select" aria-label="Default select example" th:field="*{status}">
                 <option th:each="statusValue : ${T(ru.gb.lesson11.entity.enums.Status).values()}"

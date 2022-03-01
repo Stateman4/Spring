@@ -31,6 +31,18 @@ public class ProductController {
       return "product-form";
    }
 
+   @GetMapping("/{productId}")
+   public String info(Model model, @PathVariable(name = "productId") Long id){
+      Product product;
+   if(id != null){
+      product = productService.findById(id);
+   } else{
+      return "redirect:/product/all";
+   }
+   model.addAttribute("product", product);
+   return "product-info";
+   }
+
    @PostMapping
    public String saveProduct(Product product) {
       productService.save(product);
@@ -73,6 +85,10 @@ public class ProductController {
       return "product-list";
    }
 
+   @GetMapping("/need_auth")
+   public String needAuth(){
+      return "need_authority";
+   }
 
    //отобразить ошибку/
    @ExceptionHandler(RuntimeException.class)
