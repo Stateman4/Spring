@@ -3,6 +3,8 @@ package ru.gb.lesson12.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,14 +14,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) //включили работу аннотаций для security
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(
                 (requests) -> {
                     requests.antMatchers("/product/all").permitAll();
-                    requests.antMatchers(HttpMethod.POST, "/product").hasAuthority("ADMIN"); //настройка доступа только для админа
+                 //   requests.antMatchers(HttpMethod.POST, "/product").hasAuthority("ADMIN"); //настройка доступа только для админа
                     requests.mvcMatchers(HttpMethod.GET, "/product/{productId}").permitAll();
+                    requests.antMatchers("/registration").permitAll(); //доступ к регистрации для всех
                 }
 
         );   //Разрешили проход по ссылку всех продуктов без авторизации
@@ -28,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests((requests) -> {
             ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)requests.anyRequest()).authenticated();
         });
+        http.exceptionHandling().accessDeniedPage("/errors/access-denied"); //для страницы Запрета доступа
         http.formLogin();
         http.httpBasic();
     }

@@ -19,15 +19,15 @@
                     <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}" aria-current="page" th:href="@{/product/all}">Список продуктов</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}" aria-current="page" th:href="@{/product/all/desc}">По уменьшению цены</a>
+                    <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}" aria-current="page" th:href="@{/product/all_desc}">По уменьшению цены</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}" aria-current="page" th:href="@{/product/all/asc}">По возрастанию цены</a>
+                    <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}" aria-current="page" th:href="@{/product/all_asc}">По возрастанию цены</a>
                 </li>
-                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                <li class="nav-item" sec:authorize="hasAuthority('product.create')">
                     <a class="nav-link" th:classappend="${activeTab == 'ProductForm' ? 'active' : ''}" th:href="@{/product}">Добавить продукт</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasAuthority('product.addcart')">
                     <a class="nav-link" th:classappend="${activeTab == 'Cart' ? 'active' : ''}" th:href="@{/cart}">Корзина</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
@@ -38,6 +38,11 @@
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <form th:action="@{/login}" method="post">
                     <input type="submit" class="btn btn-warning" value="Войти">
+                    </form>
+                </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <form th:action="@{/registration}" method="get">
+                        <input type="submit" class="btn btn-danger" value="Регистрация">
                     </form>
                 </li>
             </ul>

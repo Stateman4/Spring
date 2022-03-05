@@ -12,19 +12,21 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "AUTHORITY")
+@Table(name = "AUTHORITY", schema="public")
 public class Authority implements GrantedAuthority{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String role;
+    @Column(name = "permission")
+    private String permission;
 
     @ManyToMany(mappedBy = "authorities")
-    private Set<AccountUser> users;
+    private Set<AccountRole> roles;
 
     @Override
     public String getAuthority() {
-        return this.role;
+        return this.permission;
     }
 }
